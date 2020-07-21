@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>newVsfile</title>
+        <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <style>
+            .class-01
+            {
+                font-size: 23px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <label class="class-01">{{name}}</label>
+        </div>
+        <div id="list-test">
+            <ul>
+                <li v-for="movie in movies">
+                    {{movie}}
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+        let data={name:"name01"};
+        let data02={movies:['星际迷航','盗梦空间','大话西游']};
+        const app=new Vue({
+            el:"#app",
+            data:data
+        });
+        const list_test=new Vue({
+            el:"#list-test",
+            data:data02
+        });
+        data.name="新增02";
+        console.log(data.name);
+        data02.movies.push('牯岭街少年杀人事件');
+        </script>
+    </body>
+</html>

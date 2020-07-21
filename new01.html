@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>newVsfile</title>
+        <script src="./js/vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div id="example-1">
+                <input v-model="message" placeholder="edit me">
+                <p>Message is :{{ message }}</p>
+            </div>
+        </div>
+        <script type="text/javascript">
+    
+        const data={message:"new_test"};
+        var vm=new Vue({
+            el:"#app",
+            data:data
+        });
+        </script>
+    </body>
+</html>
