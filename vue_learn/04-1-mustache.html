@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <meta charset="utf-8">
+     <title>default-tittle</title>
+     <style>
+       .red
+       {
+         color: red;
+         font-size: 27px;
+       }
+       [v-cloak]
+       {
+         display: none;
+       }
+     </style>  
+   </head>
+   <body>
+     <div id="app" v-cloak>
+       <h2>Hello {{name}}</h2>
+       <h2>Are you {{firstName}} the {{lastName}}?</h2>
+       <h2>The counter is {{counter + 12}}</h2>
+       <h2 v-once>Message: {{onceData}}</h2>
+       <div v-html="htmlData"></div>
+       <h2 v-text="textData" style="color: aqua;"></h2>
+     </div>
+   </body>
+   <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+   <script type="text/javascript">
+     let app = new Vue({
+       el: "#app",
+       data:{
+         name: "Vuejs",
+         firstName: "coder",
+         lastName: "who",
+         counter: 100,
+         onceData: "You can't change me.",
+         htmlData: '<label class="red">A label.</label>',
+         textData: 'A Text'
+       }
+     });
+     app.onceData="Change Now!";
+     app.onceData="Change Again!";
+  </script>
+</html>

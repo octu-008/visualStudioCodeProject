@@ -22,16 +22,36 @@
                 </li>
             </ul>
         </div>
+        <div id="count-buttons">
+            <label>计数：{{count}}</label>
+            <button @click="increment" type="button">加</button>
+            <button @click="decrement" type="button">减</button>
+        </div>
         <script type="text/javascript">
         let data={name:"name01"};
         let data02={movies:['星际迷航','盗梦空间','大话西游']};
-        const app=new Vue({
+        const app=new Vue({ 
             el:"#app",
             data:data
         });
         const list_test=new Vue({
             el:"#list-test",
             data:data02
+        });
+        const count_buttons=new Vue({
+            el:"#count-buttons",
+            data:{
+                count:0
+            },
+            methods: {
+             increment(){
+                 this.count++;
+             },
+             decrement()
+             {
+                 this.count--;
+             }   
+            }
         });
         data.name="新增02";
         console.log(data.name);
