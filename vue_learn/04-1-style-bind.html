@@ -28,6 +28,8 @@
               fullName : function()
               {
                   //计算属性,不需要添加小括号，本质上还是属性
+                  //虽然有set方法，但一般都不使用
+                  //computed 相比 methods :computed会进行缓存，只会调用一次，而method是调用多次
                   return this.firstName+' '+this.lastName ;
               }
           },

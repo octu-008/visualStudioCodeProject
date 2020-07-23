@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>default-tittle</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 传入点击事件本身 -->
+        <button type="button" @click="btn3Click(123,$event)">按钮3</button>
+        <div @click="divb">
+            <button type="button" @click.stop="divbtn">div button</button>
+        </div>
+        <br>
+    </div>
+    <div id="form_submit">
+        <input type="text" placeholder="edit" @keyup="enterKeyUp($event)">
+        <h2 v-if="isShow">保护</h2>
+        <button type="button" @click="toggleShow">保护！！</button>
+    </div>
+    <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        const app=new Vue({
+            el : '#app',
+            methods: {
+                btn3Click(number,event)
+                {
+                    console.log("number : "+number);
+                    console.log(event);
+                },
+                divbtn()
+                {
+                    console.log("div btn click");
+                },
+                divb()
+                {
+                    console.log("div click");
+                }
+            },
+        });
+        const submitForm = new Vue({
+            el : '#form_submit',
+            data : {
+                isShow : true
+            },
+            methods: {
+                enterKeyUp(event)
+                {
+                    if(event.key == 'a')
+                    {
+                        console.log("a is keyUp");
+                    }
+                },
+                toggleShow()
+                {
+                    if(this.isShow)
+                    {
+                        this.isShow = false;
+                    }
+                    else
+                    {
+                        this.isShow = true;
+                    }
+                }
+            },
+        });
+        //一般写法
+        const obj={
+            name : 'Jack',
+            age : 18,
+            say : function (){
+                console.log("im "+name+", im "+age);
+            },
+        };
+        //ES6 增强写法
+        let name02='jack';
+        let age02=18;
+        const obj02={name02,age02,say02(){
+            console.log("im "+name02+", im "+age02);
+        }};
+        obj02.say02();
+        console.log(obj02);
+        for(let i=0;i<5;i++)
+        {
+            for(let j=0;j<3;j++)
+            {
+                console.log(i+":"+j);
+            }
+        }
+    </script>
+</body>
+</html>
