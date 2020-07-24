@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>default-tittle</title>
+</head>
+<body>
+    <div id="app">
+      <h2>{{result}} : {{source}}</h2>
+      <input type="number" placeholder="输入成绩" v-model="inputNumber"><button type="button" @click="changeSource">改变成绩</button>
+    </div>
+    <br>
+    <div id = "login">
+      <span v-if="isUser">
+        <label for="username">用户账号</label>
+        <input type="text" id="username" placeholder="用户账号" key="username-input">
+      </span>
+      <span v-else>
+        <label for="email">用户邮箱</label>
+        <input type="email" id="email" placeholder="用户邮箱" key="email-input">
+      </span>
+      <button @click = "isUser = (!isUser)">{{typeChcek}}</button>
+      <ul>
+        <li v-for="(info,num) in person">{{num}}:{{info}}</li>
+      </ul>
+    </div>
+    <div id="key_use">
+     <!--  key绑定最好是和item一一对应 -->
+      <ul>
+        <li v-for="(item, index) in list" :key="item">{{index + 1}}:---{{item}}</li>
+      </ul>
+      <button type="button" @click="btnClick01">按钮1</button>
+    </div>
+    <div id="shopping_list">
+      <table>
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in list_shop">
+            <th>{{item.name}}</th>
+            <th>{{item.price}}</th>
+            <th><button type="button" @click="reduce_button(index)">-</button>
+              {{item.count}}
+              <button type="button" @click="add_button(index)">+</button></th>
+            <th>移除</th>
+          </tr>
+        </tbody>
+      </table>
+      <h2>总价：{{sumResult}}</h2>
+    </div>
+    <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    source : 90,
+                    inputNumber : 0
+                }
+            },
+            computed: {
+              result(){
+                let showMessage = '';
+                if(this.source >= 90)
+                {
+                  showMessage = '优秀';
+                }
+                else if (this.source >= 80)
+                {
+                  showMessage = '良好';
+                }
+                else if (this.source >= 70)
+                {
+                  showMessage = '一般';
+                }
+                else if (this.source >= 60)
+                {
+                  showMessage = '及格';
+                }
+                else
+                {
+                  showMessage = '不及格';
+                }
+                return showMessage;
+              }
+            },
+            methods: {
+              changeSource()
+              {
+                if(this.inputNumber > 0)
+                {
+                  this.source = this.inputNumber;
+                }
+              }
+            },
+        });
+        const loginVue = new Vue({
+          el : '#login',
+          data() {
+            return {
+              isUser : true,
+              person : {
+                name : 'jack',
+                age : 18,
+                height : 1.88
+              }
+            }
+          },
+          computed: {
+            typeChcek()
+            {
+              if(this.isUser)
+              {
+                return '切换至邮箱'
+              }
+              else
+              {
+                return '切换至用户账号'
+              }
+            }
+          },
+        });
+        const key_use = new Vue ({
+          el: '#key_use',
+          data() {
+            return {
+              list: ['A','B','C','D','E']
+            }
+          },
+          methods: {
+            btnClick01()
+            {
+              //1.push方法 可以做到响应式
+              this.list.push('F');
+              //2.pop 方法 可以做到响应式
+              //this.list.pop(); 
+              //3.shift 方法 可以做到响应式 删除第一个元素
+              //this.list.shift();
+              //4. unshift 方法 可以做到响应式 在第一个元素前加入元素
+              //this.list.unshitf();
+              //5. splice() 可以做到响应式
+              //this.list.splice()
+              //6 Vue.set
+              //Vue.set(修改内容,索引,修改值)
+            },
+            count_plus(...nums)
+            {
+              for (num in nums)
+              {
+                console.log(result);
+              }
+            }
+          },
+        });
+        const shopping_list = new Vue({
+          el: '#shopping_list',
+          data() {
+            return {
+              list_shop: [
+                {
+                  name: 'stuff01',
+                  price: 80,
+                  count: 1
+                },
+                {
+                  name: 'stuff02',
+                  price: 90,
+                  count: 1
+                },
+                {
+                  name: 'stuff03',
+                  price: 70,
+                  count: 1
+                }
+              ]
+            }
+          },
+          computed: {
+            sumResult()
+            {
+              let sum=0;
+              for(let i=0;i<this.list_shop.length;i++)
+              {
+                sum+=(this.list_shop[i].price*this.list_shop[i].count);
+              }
+              return sum;
+            }
+          },
+          methods: {
+            reduce_button(index)
+            {
+              if(this.list_shop[index].count > 0)
+              {
+                this.list_shop[index].count--;
+              }
+            },
+            add_button(index)
+            {
+              this.list_shop[index].count++;
+            }
+          },
+        }
+      );
+    </script>
+</body>
+</html>
