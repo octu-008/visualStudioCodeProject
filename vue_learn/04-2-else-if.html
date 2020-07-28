@@ -48,7 +48,7 @@
             <th><button type="button" @click="reduce_button(index)">-</button>
               {{item.count}}
               <button type="button" @click="add_button(index)">+</button></th>
-            <th>移除</th>
+            <th @click="remove(index)">移除</th>
           </tr>
         </tbody>
       </table>
@@ -185,10 +185,14 @@
             sumResult()
             {
               let sum=0;
-              for(let i=0;i<this.list_shop.length;i++)
+              for(let stuff of this.list_shop)
+              {
+                sum+=(stuff.price*stuff.count);
+              } 
+/*               for(let i=0;i<this.list_shop.length;i++)
               {
                 sum+=(this.list_shop[i].price*this.list_shop[i].count);
-              }
+              } */
               return sum;
             }
           },
@@ -203,10 +207,41 @@
             add_button(index)
             {
               this.list_shop[index].count++;
+            },
+            remove(index)
+            {
+              this.list_shop.splice(index,1);
             }
           },
         }
       );
+      //filter map reduce
+      //filter 中的回调函数，有一个要求必须返回一个boolean
+      const num=[10,20,111,222,444,40,50];
+      let newNum=num.filter(function(n){
+        return n>=50;
+      }).map(function(n){
+        return n*2;
+      });
+      console.log(newNum);
+      const obejcts=[
+        {
+          count: 2,
+          name: 'jack'
+        },
+        {
+          count: 4,
+          name: 'jack'
+        },
+        {
+          count: 6,
+          name: 'mike'
+        }
+      ];
+      let newObject=obejcts.filter(function(n){
+        return n.name === 'jack';
+      });
+      console.log(newObject);
     </script>
 </body>
 </html>

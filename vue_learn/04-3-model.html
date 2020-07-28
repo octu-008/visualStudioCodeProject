@@ -3,8 +3,26 @@
 <head>
   <meta charset="utf-8">
     <title>default-tittle</title>
+    <style>
+      .defalutClass
+      {
+        color: grey;
+      }
+      .checked
+      {
+        color: green;
+      }
+      .unchecked
+      {
+        color: red;
+      }
+    </style>
 </head>
 <body>
+  <div id="keyUpExample">
+    <input type="text" id="someId" v-model="inputValue" @keyup="keyUpMethods()"><br>
+    <label for="someId" :class="checkedClass">大于等于6位，小于等于18位</label>
+  </div>
   <div id="app">
     <input type="checkbox" id="checkbox" v-model="checked">
     <label for="checkbox">{{checked}}</label>
@@ -14,18 +32,23 @@
     <label for="john">John</label>
     <input type="checkbox" id="mike" value="Mike3" v-model="checkedNames">
     <label for="mike">Mike</label>
+    <input type="checkbox" id="trueForFalse" v-model="isAgree">
+    <label for="trueForFalse">同意协议</label>
     <br>
     <span>Check names : {{checkedNames}}</span>
+    <button type="button" :disabled="!isAgree" @click="alertSomething()">下一步</button>
   </div>
   <br>
   <div id="example-4">
+    <label for="one">
     <input type="radio" id="one" value="One" v-model="picked">
-    <label for="one">One</label>
+    One</label>
     <br>
     <input type="radio" id="two" value="Two" v-model="picked">
     <label for="two">Two</label>
     <br>
     <span>Picked:{{picked}}</span>
+
   </div>
   <div id="example-5">
     <select v-model="selected">
@@ -44,12 +67,40 @@
   </div>
   <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
   <script>
+    const keyUpExample=new Vue({
+      el:'#keyUpExample',
+      data() {
+        return {
+          inputValue:'',
+          checkedClass: 'defalutClass'
+        }
+      },
+      methods: {
+        keyUpMethods()
+        {
+          if(this.inputValue.length<=18 && this.inputValue.length>=6)
+          {
+            this.checkedClass='checked';
+          }
+          else{
+            this.checkedClass='unchecked';
+          }
+        }
+      },
+    });
     const app=new Vue({
       el: '#app',
       data() {
         return {
           checkedNames:[],
-          checked: true
+          checked: true,
+          isAgree: false
+        }
+      },
+      methods: {
+        alertSomething()
+        {
+          alert("click now");
         }
       },
     });
@@ -86,6 +137,7 @@
         }
       },
     });
+  
   </script>
 </body>
 </html>

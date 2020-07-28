@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>default-tittle</title>
+</head>
+<body>
+  <div id="app">
+    <cpn-c1></cpn-c1>
+    <cpn-c2></cpn-c2>
+    <cpn-c4></cpn-c4>
+  </div>
+  <script type="text/x-template" id="cpn4">
+    <div>
+      <h2>内容4</h2>
+    </div>
+  </script>
+  <template id="cpn5">
+    <div>
+      <h2>内容5</h2>
+      <h2>{{title}}</h2>
+    </div>
+  </template>
+  <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const cpnC3 = Vue.extend({
+      template: `
+        <h2>内容:cpnC3</h2>
+      `
+    });
+    Vue.component('cpn-c1',{
+      template: `
+      <div>
+        <h2>内容:cpnC1</h2>
+      </div>
+      `,
+    });
+    Vue.component('cpn-c4',{
+      template: '#cpn5',
+      data() {
+        return {
+          title: '标题内容'
+        }
+      },
+    })
+    Vue.component('cpn-c2',{
+      template: `
+      <div>
+        <h2>内容:cpnC2</h2>
+        <cpn3></cpn3>
+      </div>
+      `,
+      components: {
+        cpn3 : cpnC3
+      }
+    });
+    const app = new Vue({
+      el: '#app'
+    });
+
+  </script>
+</body>
+</html>

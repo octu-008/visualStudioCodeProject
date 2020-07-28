@@ -6,9 +6,25 @@
 </head>
 <body>
   <div id="components-demo">
+    {{item1}} : {{item2}} 
+    <br>
     <button-counter></button-counter>
     <blog-post somedata="一个标题"></blog-post>
+    <blog-potst-1 somedata="一个标题-new"></blog-potst-1>
+   <!--  v-bind不支持大写，若使用驼峰命名法，需要将大写字母改成小写并在前面加上 - -->
+    <blog-mk1  :id="idData" :listitems="listitems" :ob-ject1="object1" @itemclick="cpnClick"></blog-mk1>
   </div>
+  <template id="blog-mk1-temple">
+    <div>
+    <h3>{{id}} : {{title}} : {{titleData}}</h3>
+    <h3>{{listitems}}</h3>
+    <h3>{{obJect1}}</h3>
+    <button type="button" @click="btnCLick01">向父组件传递数据</button>
+      <ul>
+        <li v-for="(item, index) in listitems" :key="index">{{ item }}</li>
+      </ul>
+    </div>
+  </template>
   <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
   <script>
     Vue.component('button-counter',{
@@ -29,8 +45,56 @@
       props:['somedata'],
       template: '<h3>{{somedata}} ：默认标签内</h3>'
     });
+    const newCom=Vue.extend({
+      props:['somedata'],
+      template: '<h3>{{somedata}} ：默认标签内</h3>'
+    });
+    Vue.component('blog-potst-1',newCom);
+    Vue.component('blog-mk1',{
+      props: {
+        title: {
+          type: String,
+          default: '没传入时的默认标题'
+        },
+        id: String,
+        listitems: Array,
+        obJect1: Object
+      },
+      template: '#blog-mk1-temple',
+      data() {
+        return {
+          titleData: '默认标题数据 from component'
+        }
+      },
+      methods: {
+        btnCLick01()
+        {
+          //发送事件
+          this.$emit('itemclick','从子组件获得的数据1','从子组件获得的数据2');
+        }
+      }
+    });
     const componentsDemo=new Vue({
       el: '#components-demo',
+      data() {
+        return {
+          titleData: '默认标题数据',
+          idData: '默认ID',
+          listitems: ['list item 1','list item 2','list item 3'],
+          object1: {name:'jack',age:'18'},
+          item1: '',
+          item2: ''
+        }
+      },
+      methods: {
+        cpnClick(item1,item2)
+        {
+          this.item1=item1;
+          this.item2=item2;
+          this.idData = "不是默认ID";
+          console.log("父组件接收了");
+        }
+      }
     });
   </script>
 </body>
