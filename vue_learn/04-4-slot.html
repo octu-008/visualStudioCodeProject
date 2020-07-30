@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <slot_spn>
+        <h2 slot="up">插槽内内容111111111111111</h2>
+        <slot_cpn_2 slot="down"></slot_cpn_2>
+        <template v-slot:up>
+          <h2> v-slot 中的内容</h2>
+        </template>
+      <template v-slot:default="slot_data">
+        <h2 v-for="item in slot_data.data">{{item}}</h2>
+      </template>
+    </slot_spn>
+  </div>
+  <template id="slot_cpn">
+    <div>
+      <slot name="up">
+        <span>上方默认插槽</span>
+      </slot>
+      <h2>一个组件</h2>
+      <slot name="center">
+        <h2>中间默认插槽</h2>
+      </slot>
+      <slot name="down">
+        <span>下方默认插槽</span>
+      </slot>
+    </div>
+  </template>
+  <template id="slot_cpn_2">
+    <div>
+      <h2>组件：2</h2>
+      <slot :data="number">
+        <h2>默认展示:</h2>
+        <ul>
+          <li v-for="(item, index) in number " :key="item">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        slot_spn: {
+          template: '#slot_cpn',
+        },
+        slot_cpn_2: {
+          template: '#slot_cpn_2',
+          data() {
+            return {
+              number: ['1','2','3']
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+</html>

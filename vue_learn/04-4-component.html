@@ -8,13 +8,15 @@
 <body>
   <div id="app">
     <h1>父组件: {{num1}}</h1>
-    <cpn :number1="num1" :number2="num2" @num1_change="fa_num1_change"></cpn>
+    <cpn :number1="num1" :number2="num2" @num1_change="fa_num1_change" ref="cpn1"></cpn>
+    <button type="button" @click="fa_find_children_data">打印子组件数据</button>
   </div>
   <template id="cpn">
     <div>
       <h2>子组件:{{data_num1}}</h2>
       <input type="number" placeholder="edit" :value="data_num1" @input="num1Input">
       <h2>{{number2}}</h2>
+      <button type="button" @click="click_parent">打印父组件数据</button>
     </div>
   </template>
   <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -24,7 +26,8 @@
       data() {
         return {
           num1: 1,
-          num2: 2
+          num2: 2,
+          str1: '父组件字符串'
         }
       },
       methods: {
@@ -32,6 +35,20 @@
         {
           let num_num_1=parseInt(son_num_1);
           this.num1 = num_num_1 ;
+        },
+        fa_find_children_data()
+        {
+          //$children可以获得子组件(数组)
+          //通过$children直接调用子组件的方法或获取子组件数据
+/*           this.$children[0].showStr();
+          console.log(this.$children[0].data_num1);
+          this.$children[0].data_num1 = 3;
+          console.log(this.$children[0].data_num1); */
+
+          //$refs则通过事先在组件中设置ref属性 然后利用$refs.属性名获取该子组件
+          //有点类似给组件添加了id 以便父组件引用对应子组件
+          //开发中常用$refs
+          this.$refs.cpn1.showStr();
         }
       },
       components: {
@@ -50,7 +67,8 @@
           data() {
             return {
               data_num1: this.number1,
-              data_num2: this.number2
+              data_num2: this.number2,
+              data_str: '子组件字符串'
             }
           },
           methods: {
@@ -58,6 +76,17 @@
             {
               this.data_num1=event.target.value;
               this.$emit('num1_change',this.data_num1);
+            },
+            showStr()
+            {
+              console.log(this.data_str);
+            },
+            click_parent()
+            {
+              //$parent 获取父组件 Vue实例或Vue组件均可获取
+              //但一般开发中为了保证组件的独立性与复用性，不直接使用$aprent，
+              console.log(this.$parent.str1);
+              //$root 直接访问根 一般是最底层vue实例
             }
           },
         }
