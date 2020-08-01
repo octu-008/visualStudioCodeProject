@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <slot_1>
+      <template v-slot:content_slot_1="slot">
+        <h1 style="color: red;">{{slot.data}}</h1>
+        <ul>
+          <li v-for="(item, index) in slot.list" :key="item">
+            {{item}}
+          </li>
+        </ul> 
+      </template>
+    </slot_1>
+  </div>
+  <template id="slot_1">
+    <div>
+      <h2>插槽1：</h2>
+      <slot name="content_slot_1" :data="data_1_str" :list="data_list"></slot>
+    </div>
+  </template>
+  <template id="slot_2">
+    <div>
+      <h3 style="color: red;">{{data_str}}</h3>
+    </div>
+  </template>
+  <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      components: {
+        slot_1 : {
+          template: '#slot_1',
+          data() {
+            return {
+              data_1_str: '组件1_data——1',
+              data_list: ['list_item_1','list_item_2','list_item_3']
+            }
+          },
+        },
+        slot_2: {
+          template: '#slot_2',
+          data() {
+            return {
+              data_str: '组件2_data'
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+</html>
