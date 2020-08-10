@@ -1,11 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Home from '../components/Home.vue'
+import About from '../components/About.vue'
 Vue.use(VueRouter)
 
   const routes = [
-  {
+    {
+      //重定向至首页
+      path: '',
+      redirect: '/home'
+    }
+    ,
+    {
+      path:'/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
+    }
+/*   {
     path: '/',
     name: 'Home',
     component: Home
@@ -16,12 +32,14 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    component: () => import( webpackChunkName: "about"  '../views/About.vue')
+  } */
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history',//改变哈希或history模式m
+  linkActiveClass: 'active'
 })
 
 export default router
