@@ -2,11 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/home" tag="button" replace>Home</router-link> |
-      <router-link to="/about" tag="button" replace>About</router-link>
-    </div>
-    <div>
-      <button type="button" @click="toHome">前往首页</button>
-      <button type="button" @click="toAbout">前往关于</button>
+      <router-link to="/about" tag="button" replace>About</router-link> |
+      <router-link :to="'/user/'+userId"  tag="button" replace>User</router-link>
     </div>
     <router-view/>
   </div>
@@ -14,6 +11,11 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      userId: 'LiFour'
+    }
+  },
   methods: {
     toHome()
     {

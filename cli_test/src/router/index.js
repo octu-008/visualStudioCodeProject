@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/Home.vue'
-import About from '../components/About.vue'
+const About =() => import('../components/User.vue');
 Vue.use(VueRouter)
 
   const routes = [
@@ -14,11 +13,18 @@ Vue.use(VueRouter)
     {
       path:'/home',
       name: 'Home',
-      component: Home
+      //懒加载模式，当使用到该路由的时候，才会进行该组件加载
+      //用户在请求时进行加载，可以避免出现请求文件(js)过大时，加载页面时出现页面空白的情况
+      component: () => import('../components/Home.vue')
     },
     {
       path: '/about',
       name: 'About',
+      component: () => import('../components/About.vue')
+    },
+    {
+      path: '/user/:userId',
+      name: 'User',
       component: About
     }
 /*   {
