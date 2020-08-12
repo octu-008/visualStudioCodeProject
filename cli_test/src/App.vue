@@ -5,7 +5,7 @@
       <router-link to="/about" tag="button" replace>About</router-link> |
       <router-link :to="'/user/'+userId"  tag="button" replace>User</router-link>
     </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -13,7 +13,13 @@ export default {
   name: 'App',
   data() {
     return {
-      userId: 'LiFour'
+      userId: 'LiFour',
+      userParam: {
+        path: '/user',
+        query: {
+          name: 'jack',
+        }
+      }
     }
   },
   methods: {

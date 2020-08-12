@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const About =() => import('../components/User.vue');
+const Home = () => import('../components/Home.vue');
+const Homechild = () =>import('../components/Homechild.vue');
+const Homechildmessage = () => import('../components/Homechildmessage.vue');
+const About = () => import('../components/About.vue');
+const User = () => import('../components/User.vue');
 Vue.use(VueRouter)
 
   const routes = [
@@ -15,17 +19,27 @@ Vue.use(VueRouter)
       name: 'Home',
       //懒加载模式，当使用到该路由的时候，才会进行该组件加载
       //用户在请求时进行加载，可以避免出现请求文件(js)过大时，加载页面时出现页面空白的情况
-      component: () => import('../components/Home.vue')
+      component: Home,
+      children: [
+        {
+          path:'homechild',
+          component: Homechild
+        },
+        {
+          path: 'homechildmessage',
+          component: Homechildmessage
+        }
+      ]
     },
     {
       path: '/about',
       name: 'About',
-      component: () => import('../components/About.vue')
+      component: About
     },
     {
       path: '/user/:userId',
       name: 'User',
-      component: About
+      component: User
     }
 /*   {
     path: '/',
