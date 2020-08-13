@@ -11,6 +11,12 @@
        msg: '好耶'
      }
    },
+  created() {
+     console.log('HomeChild created');
+   },
+   destroyed() {
+     console.log('HomeChild destroyed');
+   },
 }
 </script>
 <style scoped>

@@ -3,9 +3,12 @@
     <div id="nav">
       <router-link to="/home" tag="button" replace>Home</router-link> |
       <router-link to="/about" tag="button" replace>About</router-link> |
-      <router-link :to="'/user/'+userId"  tag="button" replace>User</router-link>
+      <router-link :to="userParam"  tag="button" replace>User</router-link>
+<!--       <button type="button" @click="userCLick">user跳转带参数</button> -->
     </div>
+    <keep-alive>
     <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -18,11 +21,16 @@ export default {
         path: '/user',
         query: {
           name: 'jack',
+          age: 18
         }
       }
     }
   },
   methods: {
+    userCLick()
+    {
+      this.$router.push(this.userParam);
+    },
     toHome()
     {
       this.$router.replace('/home');

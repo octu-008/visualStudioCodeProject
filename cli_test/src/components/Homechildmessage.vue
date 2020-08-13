@@ -11,6 +11,12 @@
        msg: '我怕了'
      }
    },
+  created() {
+     console.log('HomeChildMessage created');
+   },
+   destroyed() {
+     console.log('HomeChildMessage destroyed');
+   },
 }
 </script>
 <style scoped>
