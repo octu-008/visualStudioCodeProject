@@ -6,7 +6,9 @@
       <router-link :to="userParam"  tag="button" replace>User</router-link>
 <!--       <button type="button" @click="userCLick">user跳转带参数</button> -->
     </div>
-    <keep-alive>
+    <!-- keep-alive组件中使用 exclude = ‘组件名1，组件名2，..’ 可以将选定的组件排除在缓存外 -->
+    <!-- 使切换到这些组件时将该组件重新创建 -->
+    <keep-alive exclude="User">
     <router-view></router-view>
     </keep-alive>
   </div>
