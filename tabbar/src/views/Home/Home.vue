@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2>主页</h2>
+  <h2>主页：vuex中的store{{$store.state.count}}</h2>
 </div>
 </template>
 <script>
