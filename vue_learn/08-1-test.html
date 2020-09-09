@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html{
+      font-size: 62.5%;
+    }
+    #div_fa{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      align-content: center;
+      /* align-items: center; */
+      width: 100%;
+      height: 100rem;
+    }
+    #div1{
+      width: 10rem;
+      height: 10rem;
+      background-color: aqua;
+    }
+    #div2{
+      width: 15rem;
+      height: 10rem;
+      background-color: tomato;
+    }
+    #div3{
+      width: 5rem;
+      height: 10rem;
+      background-color:brown
+    }
+    #div4{
+      width: 20rem;
+      height: 10rem;
+      background-color:blue
+    }
+    #div5{
+      width: 60rem;
+      height: 10rem;
+      background-color: crimson;
+    }
+    #div6{
+      width: 40rem;
+      height: 10rem;
+      background-color: chartreuse;
+    }
+    #div7{
+      width: 30rem;
+      height: 10rem;
+      background-color: teal;
+    }
+    #div8{
+      width: 60rem;
+      height: 10rem;
+      background-color: green;
+    }
+      #div9{
+      width: 80rem;
+      height: 10rem;
+      background-color: red;
+    }
+    #div0{
+      width: 2rem;
+      height: 10rem;
+      background-color: purple;
+    }
+  </style>
+</head>
+<body>
+  <div id="div_fa">
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+    <div id="div4"></div>
+    <div id="div5"></div>
+    <div id="div6"></div>
+    <div id="div7"></div>
+    <div id="div8"></div>
+    <div id="div9"></div>
+    <div id="div0"></div>
+  </div>
+  <script>
+    var a = 20;
+    var obj = {
+      a: 10,
+      c: this.a +20,
+      fn: function(){
+        return this.a;
+      }
+    }
+    console.log(obj.c);
+    console.log(obj.fn());
+/*     var ad = null;
+    var bd = null;
+    function foo(){
+      var a =10;
+      var b =10;
+      function add(){
+        return a+b;
+      };
+      function bdd(){
+        a+=1;
+      }
+      ad = add;
+      bd = bdd;
+    }
+    foo();
+    console.log(ad());
+    bd();
+    console.log(ad());
+    for(let i=1;i<=5;i++){
+      setTimeout((function (){
+        console.log(i);
+      })(i),1000);
+    } */
+/*     var fn = null;
+    function foo(){
+      var a = 2;
+      function innerFoo(){
+        console.log(c);
+        console.log(a);
+      }
+      fn = innerFoo;
+    }
+    function bar (){
+      var c = 100 ;//不可访问
+      fn();
+    }
+    foo();
+    bar(); */
+/*     var name = "window";
+    var p = {
+      name: 'Perter',
+      getName: function() {
+        // 利用变量保存的方式保证其访问的是p对象
+        var self = this;
+        return function() {
+          return self.name;
+        }
+      }
+    }
+    var getName = p.getName();
+    var _name = getName();
+    console.log(_name); */
+/*     console.log(a);
+    var a = 1; */
+/*     let foo = {
+      att: 'function att'
+    };
+    console.log(foo['att']);
+    console.log(foo["att"]);
+    console.log(foo["a"+"t"+"t"]); */
+  </script>
+<!--   <script>
+    /* 父类 */
+    function Animal (name) {
+      this.name = 'Animal' ;
+      this.sleep = function(){
+        console.log(this.name + '正在睡觉');
+      }
+    }
+    Animal.prototype.eat = function(food){
+      console.log(this.name + '正在吃' + food);
+    }
+    /* 原型链继承 */
+    function Cat(){
+
+    }
+    Cat.prototype = new Animal();
+    Cat.prototype.name = 'Cat';
+
+    var cat = new Cat();
+    console.log(cat.name);
+    console.log(cat.eat('fish'));
+    console.log(cat.sleep());
+    console.log(cat instanceof Animal);
+    console.log(cat instanceof Cat);
+  </script> -->
+</body>
+</html>

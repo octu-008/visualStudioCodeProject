@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>default-tittle</title>
+</head>
+<style>
+  html{
+      font-size: 62.5%;
+  }
+  body{
+    padding: 0 0;
+    margin: 0 0;
+  }
+  #trans{
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom:100px solid red;
+    position: relative;
+  }
+  .test_div{
+    padding: 0 0;
+    margin:0 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    position: relative;
+  }
+  .text::before{
+    content:"";
+    width: 0px;
+    height: 0px;
+    border-top:20px solid red;
+    border-right:20px solid black;
+    border-bottom:0px solid green;
+    border-left:20px solid blue;
+    display: inline-block;
+  }
+  .text::after{
+    content: ":伪";
+  }
+  .test_div:after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .red_div{
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
+    background-color: red;
+  }
+  .green_div{
+    width: 10rem;
+    height: 10rem;
+    margin-left: 910px;
+    position: absolute;
+    background-color: green;
+  }
+  .un_div{
+    display: table;
+    margin: auto; 
+  }
+  .un_red_div{
+    width: 10rem;
+    height: 10rem;
+    background-color: red;
+  }
+  .un_div_1{
+    position: relative;
+  }
+  .un_red_div_1{
+    width: 10rem;
+    height: 10rem;
+    background-color: red;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .un_div_2{
+    display: inline-block;
+    position: relative;
+    left: 50%;
+  }
+  .un_div_con_2{
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    right: 50%;
+    background-color: red;
+  }
+  .un-div-3{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+  }
+  .und-div-3-con{
+    width: 10rem;
+    height: 10rem;
+    background-color: red;
+    align-self: center;
+  }
+  .cz-div-1{
+    width: 100rem;
+    height: 20rem;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .cz-div-1-c{
+    width: 5rem;
+    height: 5rem;
+    background-color: green;
+  }
+  .cz-div-2{
+    width: 50rem;
+    height: 50rem;
+  }
+  .cz-div-2::before{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  .cz-div-2-c{
+    width: 10rem;
+    height: 10rem;
+    background-color: green;
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
+<body>
+<div class="test_div">
+  <span id="trans"></span>
+  <span class="text">居中文字</span>
+  <div class="red_div"></div>
+<!--   <div class="green_div"></div> -->
+</div>
+<hr>
+<div class="un_div">
+  <div class="un_red_div"></div>
+</div>
+<hr>
+<div class="un_div_1">
+  <div class="un_red_div_1"></div>
+</div>
+<hr>
+<div class="un_div_2">
+<div class="un_div_con_2"></div>
+</div>
+<hr>
+<div class="un-div-3">
+  <div class="und-div-3-con"></div>
+</div>
+<hr>
+<div class="cz-div-1">
+  <div class="cz-div-1-c"></div>
+</div>
+<hr>
+<div class="cz-div-2"> 
+  <div class="cz-div-2-c"></div>
+</div>
+</body>
+</html>

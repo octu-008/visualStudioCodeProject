@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<div class="father">
+<p>我怕了</p>
+</div>
+</body>
+<script>
+  function getText(text)
+  {
+    let origin = text.split("");
+    let res = '';
+    let mark =true;
+    for(let i=0;i<origin.length;i++)
+    {
+      if(origin[i] != "(" && origin[i] != ")" && mark && origin[i] != "<")
+      {
+        res += origin[i];
+      }
+      else if (origin[i] == "<")
+      {
+        res = res.substring(0,res.length-1)
+      }
+      else if (origin[i] == "(")
+      {
+        mark = false;
+      }
+      else if (origin[i] == ")")
+      {
+        mark = true;
+      }
+      else {}
+    }
+    return res;
+  }
+  let origin = 'abc(def)删<' ;
+  console.log(getText(origin)+":"+getText(origin).length);
+/*   function dupicateWord(nums)
+  {
+    const dict = {};
+    nums.forEach(element => {
+      dict[element] = dict[element] === undefined ? false : true;
+    });
+    return dict;
+  }
+  console.log(dupicateWord(['A','B','B','C']));
+  let d = {
+    name: 'A',
+    age: 'B'
+  };
+  console.log(d);
+  d['name']="DDDD";
+  d['nameOfAge'] = 'AAAA';
+  console.log(d); */
+/*   console.log(null == undefined);
+  console.log(null === undefined);
+  console.log(NaN === NaN);
+  console.log(NaN == null); */
+/*   console.log(Infinity + 1 !== Infinity);
+  console.log(Infinity + 1 != Infinity);
+  console.log(Infinity + 1 == Infinity);
+   */
+
+/*   var name = 'Jay';
+  function Person(name)
+  {
+    this.name = name;
+    console.log(this.name);
+  }
+  console.log(name);
+  var a =Person('Tom');
+  console.log(name);
+  console.log(this.name);
+  console.log("___________");
+  console.log(a);
+  var b = new Person('Michael');
+  console.log(name);
+  console.log(b); */
+/* 
+class A{
+
+};
+class B extends A{
+
+};
+var a = new A();
+let b = new B();
+console.log(a.__proto__);
+console.log(a.prototype);
+console.log(b.__proto__);
+console.log(b.prototype); */
+</script>
+</html>

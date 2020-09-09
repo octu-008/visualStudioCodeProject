@@ -38,9 +38,9 @@ axios.defaults.timeout = '..';
      {
        //并发和Promise原理差不多
        //then 可以使用 数组参数 也可使用axios.spread 分开获得每一个请求的结果
-       axios.all([axios(),axios()]).then(axios.spread((re1,re2) => {
+/*        axios.all([axios(),axios()]).then(axios.spread((re1,re2) => {
 
-       }));
+       })); */
      }
    },
 }
